@@ -1,0 +1,28 @@
+# Configure Banknotes below:
+withdraw:
+  min-amount: 1
+  max-amount: 1000000
+  type: PAPER
+  name: "&eBanknote"
+  lore:
+    - ""
+    - "&7Amount: &a${amount}"
+    - "&7Player: &a{player}"
+    - ""
+    - "&7&oRight Click to Redeem"
+
+# Configure Bottles below:
+bottle:
+  min-amount: 1
+  max-amount: 1000000
+  type: EXPERIENCE_BOTTLE
+  name: "&eExperience Bottle"
+  lore:
+    - ""
+    - "&7Amount: &a{amount} EXP"
+    - "&7Player: &a{player}"
+    - ""
+    - "&7&oRight Click to Redeem"
+
+# What gets filled into {player} from the give command.
+admin-player: "Admin"

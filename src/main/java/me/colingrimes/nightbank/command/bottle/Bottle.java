@@ -5,6 +5,7 @@ import me.colingrimes.midnight.command.handler.util.ArgumentList;
 import me.colingrimes.midnight.command.handler.util.CommandProperties;
 import me.colingrimes.midnight.command.handler.util.Sender;
 import me.colingrimes.midnight.util.bukkit.Experience;
+import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.midnight.util.bukkit.Items;
 import me.colingrimes.nightbank.NightBank;
 import me.colingrimes.nightbank.config.Messages;
@@ -19,27 +20,28 @@ public class Bottle implements Command<NightBank> {
 	@Override
 	public void execute(@Nonnull NightBank plugin, @Nonnull Sender sender, @Nonnull ArgumentList args) {
 		Player player = sender.player();
-		if (args.getInt(0).isEmpty()) {
+		if (args.getInt(0).isEmpty() && !args.getLowercase(0).equals("all")) {
 			Messages.BOTTLE_USAGE.send(player);
 			return;
 		}
 
-		int amount = args.getInt(0).get();
+		int amount = args.getInt(0).orElse(Experience.fromPlayer(player));
+		ItemStack bottleItem = Items.of(Settings.BOTTLE_ITEM.get().clone())
+				.placeholder("{amount}", amount)
+				.placeholder("{player}", player.getName())
+				.nbt("bottle", amount)
+				.build();
+
 		if (amount < Settings.BOTTLE_MIN_AMOUNT.get()) {
 			Messages.BOTTLE_MIN.replace("{amount}", Settings.BOTTLE_MIN_AMOUNT.get()).send(player);
 		} else if (amount > Settings.BOTTLE_MAX_AMOUNT.get()) {
 			Messages.BOTTLE_MAX.replace("{amount}", Settings.BOTTLE_MAX_AMOUNT.get()).send(player);
 		} else if (Experience.fromPlayer(player) < amount) {
 			Messages.NOT_ENOUGH_EXPERIENCE.send(player);
-		} else if (player.getInventory().firstEmpty() == -1) {
+		} else if (!Inventories.canFit(player.getInventory(), bottleItem)) {
 			Messages.INVENTORY_FULL.send(player);
 		} else {
 			Experience.remove(player, amount);
-			ItemStack bottleItem = Items.of(Settings.BOTTLE_ITEM.get())
-					.placeholder("{amount}", amount)
-					.placeholder("{player}", player.getName())
-					.nbt("bottle", amount)
-					.build();
 			player.getInventory().addItem(bottleItem);
 			Messages.BOTTLE.replace("{amount}", amount).send(player);
 		}

@@ -1,0 +1,22 @@
+success:
+  withdraw: "&2&l✓ &aYou have withdrawn &l${amount}&a."
+  withdraw-claim: "&2&l✓ &aYou have claimed &l${amount}&a."
+  bottle: "&2&l✓ &aYou have bottled up &l{amount} &aexperience."
+  bottle-claim: "&2&l✓ &aYou have claimed &l{amount} &aexperience."
+
+failure:
+  inventory-full: "&4&l❌ &cYou do not have enough inventory space."
+  not-enough-money: "&4&l❌ &cYou do not have enough money."
+  not-enough-exp: "&4&l❌ &cYou do not have enough experience."
+  withdraw-min: "&4&l❌ &cThe minimum amount you can withdraw is &l${amount}&c."
+  withdraw-max: "&4&l❌ &cThe maximum amount you can withdraw is &l${amount}&c."
+  bottle-min: "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience."
+  bottle-max: "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience."
+
+usage:
+  withdraw:
+    - "&eUsage: &a/withdraw <amount>"
+    - "&a► &7Withdraws the specified amount of money."
+  bottle:
+    - "&eUsage: &a/bottle <amount>"
+    - "&a► &7Bottles up the specified amount of experience."

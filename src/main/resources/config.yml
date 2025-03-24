@@ -19,7 +19,7 @@ bottle:
   name: "&eExperience Bottle"
   lore:
     - ""
-    - "&7Amount: &a{amount} EXP"
+    - "&7Amount: &a{amount} XP"
     - "&7Player: &a{player}"
     - ""
     - "&7&oRight Click to Redeem"

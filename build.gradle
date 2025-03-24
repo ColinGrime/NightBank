@@ -15,14 +15,15 @@ version '1.0.0'
 repositories {
     mavenCentral()
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url 'https://jitpack.io/' }
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT'
+    implementation 'org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT'
 //    compileOnly 'com.github.ColinGrime:Midnight:v1.2.1'
-    compileOnly files('/Users/scill/Desktop/Coding/Plugins/Midnight/plugins/Midnight-1.2.1.jar')
+    implementation files('/Users/scill/Desktop/Coding/Plugins/Midnight/plugins/Midnight-1.2.2.jar')
+    implementation 'com.github.MilkBowl:VaultAPI:1.7'
 }
 
 test {

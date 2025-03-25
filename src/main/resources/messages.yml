@@ -1,8 +1,11 @@
 success:
   withdraw: "&2&l✓ &aYou have withdrawn &l${amount}&a."
   withdraw-claim: "&2&l✓ &aYou have claimed &l${amount}&a."
+  withdraw-receive: "&2&l✓ &aYou have received a &l${amount} &abanknote."
   bottle: "&2&l✓ &aYou have bottled up &l{amount} &aexperience."
   bottle-claim: "&2&l✓ &aYou have claimed &l{amount} &aexperience."
+  bottle-receive: "&2&l✓ &aYou have received &l{amount} &aexperience."
+  reloaded: "&2&l✓ &a&lNightBank &ahas been reloaded."
 
 failure:
   inventory-full: "&4&l❌ &cYou do not have enough inventory space."
@@ -12,8 +15,17 @@ failure:
   withdraw-max: "&4&l❌ &cThe maximum amount you can withdraw is &l${amount}&c."
   bottle-min: "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience."
   bottle-max: "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience."
+  not-online: "&4&l❌ &cThe specified player is not online."
 
 usage:
+  nightbank:
+    - "&7&m-------------&r &e&lNightBank &aCommands &7&m-------------"
+    - "&7- &a/nightbank reload &e: &7Reloads config files."
+    - "&7- &a/withdraw give <player> <amount> &e: &7Gives a banknote."
+    - "&7- &a/withdraw give all <amount> &e: &7Gives banknotes."
+    - "&7- &a/bottle give <player> <amount> &e: &7Gives an XP bottle."
+    - "&7- &a/bottle give all <amount> &e: &7Gives XP bottles."
+    - "&7&m---------------------------------------------"
   withdraw:
     - "&eUsage: &a/withdraw <amount>"
     - "&a► &7Withdraws the specified amount of money."

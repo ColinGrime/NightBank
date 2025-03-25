@@ -27,4 +27,4 @@ bottle:
     - "&7&oRight Click to Redeem"
 
 # What gets filled into {player} from the give command.
-admin-player: "Admin"
+admin-player: "&cAdmin"

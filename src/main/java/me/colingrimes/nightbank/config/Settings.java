@@ -24,5 +24,5 @@ public interface Settings {
 	Option<ItemStack> BOTTLE_ITEM = option("bottle", Items.of(Material.EXPERIENCE_BOTTLE).name("&cInvalid Configuration.").build());
 
 	// Other configurations.
-	Option<String> ADMIN_PLAYER = option("admin-player", "Admin");
+	Option<String> ADMIN_PLAYER = option("admin-player", "&cAdmin");
 }

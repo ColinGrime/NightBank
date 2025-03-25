@@ -13,7 +13,7 @@ public interface Settings {
 
 	// Banknote configurations.
 	Option<Double> WITHDRAW_MIN_AMOUNT = option("withdraw.min-amount", 1D);
-	Option<Double> WITHDRAW_MAX_AMOUNT = option("withdraw.max-amount", 1000000D);
+	Option<Double> WITHDRAW_MAX_AMOUNT = option("withdraw.max-amount", 1000000000D);
 	Option<String> WITHDRAW_CLAIM_SOUND = option("withdraw.claim-sound", "");
 	Option<ItemStack> WITHDRAW_ITEM = option("withdraw", Items.of(Material.PAPER).name("&cInvalid Configuration.").build());
 

@@ -1,7 +1,7 @@
 # Configure Banknotes below:
 withdraw:
   min-amount: 1
-  max-amount: 1000000
+  max-amount: 1000000000
   claim-sound: block.amethyst_block.resonate
   type: PAPER
   name: "&eBanknote"

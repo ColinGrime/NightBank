@@ -8,6 +8,7 @@ import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.midnight.util.text.Parser;
 import me.colingrimes.nightbank.config.Messages;
 import me.colingrimes.nightbank.config.Settings;
+import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,6 +30,7 @@ public class BankListeners implements Listener {
 
 		Player player = event.getPlayer();
 		ItemStack item = player.getInventory().getItemInMainHand();
+		int originalAmount = item.getAmount();
 
 		// Depositing a banknote.
 		double withdrawAmount = NBT.getTag(item, "withdraw", double.class).orElse(0.0);
@@ -36,11 +38,16 @@ public class BankListeners implements Listener {
 			event.setCancelled(true);
 			withdrawAmount *= removeClaimedItems(player, item, "nightbank.withdraw.claim.stack");
 
-			// Item was successfully redeemed.
-			if (withdrawAmount > 0) {
-				Common.economy().depositPlayer(player, withdrawAmount);
+			// Attempt to redeem the item -- could still fail if the economy plugin sends back a bad response.
+			if (withdrawAmount == 0) {
+				return;
+			} else if (Common.economy().depositPlayer(player, withdrawAmount).type == EconomyResponse.ResponseType.SUCCESS) {
 				Messages.WITHDRAW_CLAIM.replace("{amount}", NumberFormat.getInstance().format(withdrawAmount)).send(player);
 				Optional.ofNullable(Parser.parseSound(Settings.WITHDRAW_CLAIM_SOUND.get())).ifPresent(s -> Players.sound(player, s));
+			} else {
+				item.setAmount(originalAmount);
+				player.getInventory().setItemInMainHand(item);
+				Messages.WITHDRAW_CLAIM_FAILURE.send(player);
 			}
 			return;
 		}

@@ -13,6 +13,7 @@ failure:
   not-enough-exp: "&4&l❌ &cYou do not have enough experience."
   withdraw-min: "&4&l❌ &cThe minimum amount you can withdraw is &l${amount}&c."
   withdraw-max: "&4&l❌ &cThe maximum amount you can withdraw is &l${amount}&c."
+  withdraw-claim: "&4&l❌ &cUnable to claim this banknote. It might be too much?"
   bottle-min: "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience."
   bottle-max: "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience."
   not-online: "&4&l❌ &cThe specified player is not online."

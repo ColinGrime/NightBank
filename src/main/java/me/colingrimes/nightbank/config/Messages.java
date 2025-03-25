@@ -27,6 +27,7 @@ public interface Messages {
 	Message<?> NOT_ENOUGH_EXPERIENCE = message("failure.not-enough-exp", "&4&l❌ &cYou do not have enough experience.");
 	Message<?> WITHDRAW_MIN = message("failure.withdraw-min", "&4&l❌ &cThe minimum amount you can withdraw is &l${amount}&c.");
 	Message<?> WITHDRAW_MAX = message("failure.withdraw-max", "&4&l❌ &cThe maximum amount you can withdraw is &l${amount}&c.");
+	Message<?> WITHDRAW_CLAIM_FAILURE = message("failure.withdraw-claim", "&4&l❌ &cUnable to claim this banknote. It might be too much?");
 	Message<?> BOTTLE_MIN = message("failure.bottle-min", "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience.");
 	Message<?> BOTTLE_MAX = message("failure.bottle-max", "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience.");
 	Message<?> NOT_ONLINE = message("failure.not-online", "&4&l❌ &cThe specified player is not online.");

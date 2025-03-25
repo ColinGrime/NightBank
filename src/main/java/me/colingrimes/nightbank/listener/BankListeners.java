@@ -4,7 +4,10 @@ import me.colingrimes.midnight.util.Common;
 import me.colingrimes.midnight.util.bukkit.Experience;
 import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.midnight.util.bukkit.NBT;
+import me.colingrimes.midnight.util.bukkit.Players;
+import me.colingrimes.midnight.util.text.Parser;
 import me.colingrimes.nightbank.config.Messages;
+import me.colingrimes.nightbank.config.Settings;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.text.NumberFormat;
+import java.util.Optional;
 
 public class BankListeners implements Listener {
 
@@ -35,6 +39,7 @@ public class BankListeners implements Listener {
 			if (withdrawAmount > 0) {
 				Common.economy().depositPlayer(player, withdrawAmount);
 				Messages.WITHDRAW_CLAIM.replace("{amount}", NumberFormat.getInstance().format(withdrawAmount)).send(player);
+				Optional.ofNullable(Parser.parseSound(Settings.WITHDRAW_CLAIM_SOUND.get())).ifPresent(s -> Players.sound(player, s));
 			}
 			return;
 		}
@@ -49,6 +54,7 @@ public class BankListeners implements Listener {
 			if (bottleAmount > 0) {
 				Experience.add(player, bottleAmount);
 				Messages.BOTTLE_CLAIM.replace("{amount}", NumberFormat.getInstance().format(bottleAmount)).send(player);
+				Optional.ofNullable(Parser.parseSound(Settings.BOTTLE_CLAIM_SOUND.get())).ifPresent(s -> Players.sound(player, s));
 			}
 		}
 	}

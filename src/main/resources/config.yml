@@ -2,6 +2,7 @@
 withdraw:
   min-amount: 1
   max-amount: 1000000
+  claim-sound: block.amethyst_block.resonate
   type: PAPER
   name: "&eBanknote"
   lore:
@@ -15,6 +16,7 @@ withdraw:
 bottle:
   min-amount: 1
   max-amount: 1000000
+  claim-sound: entity.experience_orb.pickup
   type: EXPERIENCE_BOTTLE
   name: "&eExperience Bottle"
   lore:

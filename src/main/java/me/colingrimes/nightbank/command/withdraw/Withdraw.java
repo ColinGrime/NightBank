@@ -26,7 +26,7 @@ public class Withdraw implements Command<NightBank> {
 			Messages.WITHDRAW_USAGE.send(player);
 			return;
 		} else if (args.isEqual(0, "all") && !sender.hasPermission("nightbank.withdraw.all")) {
-			sender.message(Text.color("&4&l❌ &cYou lack the required permission for this command."));
+			Messages.NO_PERMISSION.send(sender);
 			return;
 		}
 

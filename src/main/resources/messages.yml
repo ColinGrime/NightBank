@@ -17,6 +17,7 @@ failure:
   bottle-min: "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience."
   bottle-max: "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience."
   not-online: "&4&l❌ &cThe specified player is not online."
+  no-permission: "&4&l❌ &cYou lack the required permission for this action."
 
 usage:
   nightbank:

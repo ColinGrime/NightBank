@@ -26,7 +26,7 @@ public class Bottle implements Command<NightBank> {
 			Messages.BOTTLE_USAGE.send(player);
 			return;
 		} else if (args.isEqual(0, "all") && !sender.hasPermission("nightbank.bottle.all")) {
-			sender.message(Text.color("&4&l❌ &cYou lack the required permission for this command."));
+			Messages.NO_PERMISSION.send(sender);
 			return;
 		}
 

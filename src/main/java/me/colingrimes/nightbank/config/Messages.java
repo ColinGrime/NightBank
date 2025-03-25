@@ -31,6 +31,7 @@ public interface Messages {
 	Message<?> BOTTLE_MIN = message("failure.bottle-min", "&4&l❌ &cThe minimum amount you can bottle up is &l{amount} &cexperience.");
 	Message<?> BOTTLE_MAX = message("failure.bottle-max", "&4&l❌ &cThe maximum amount you can bottle up is &l{amount} &cexperience.");
 	Message<?> NOT_ONLINE = message("failure.not-online", "&4&l❌ &cThe specified player is not online.");
+	Message<?> NO_PERMISSION = message("failure.no-permission", "&4&l❌ &cYou lack the required permission for this action.");
 
 	/**************************************************
 	 *                 Usage Messages                 *

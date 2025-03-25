@@ -34,11 +34,15 @@ public class BankListeners implements Listener {
 
 		// Depositing a banknote.
 		double withdrawAmount = NBT.getTag(item, "withdraw", double.class).orElse(0.0);
-		if (withdrawAmount > 0 && player.hasPermission("nightbank.withdraw.claim")) {
+		if (withdrawAmount > 0) {
 			event.setCancelled(true);
-			withdrawAmount *= removeClaimedItems(player, item, "nightbank.withdraw.claim.stack");
+			if (!player.hasPermission("nightbank.withdraw.claim")) {
+				Messages.NO_PERMISSION.send(player);
+				return;
+			}
 
 			// Attempt to redeem the item -- could still fail if the economy plugin sends back a bad response.
+			withdrawAmount *= removeClaimedItems(player, item, "nightbank.withdraw.claim.stack");
 			if (withdrawAmount == 0) {
 				return;
 			} else if (Common.economy().depositPlayer(player, withdrawAmount).type == EconomyResponse.ResponseType.SUCCESS) {
@@ -54,11 +58,15 @@ public class BankListeners implements Listener {
 
 		// Depositing an experience bottle.
 		int bottleAmount = NBT.getTag(item, "bottle", int.class).orElse(0);
-		if (bottleAmount > 0 && player.hasPermission("nightbank.bottle.claim")) {
+		if (bottleAmount > 0) {
 			event.setCancelled(true);
-			bottleAmount *= removeClaimedItems(player, item, "nightbank.bottle.claim.stack");
+			if (!player.hasPermission("nightbank.bottle.claim")) {
+				Messages.NO_PERMISSION.send(player);
+				return;
+			}
 
 			// Item was successfully redeemed.
+			bottleAmount *= removeClaimedItems(player, item, "nightbank.bottle.claim.stack");
 			if (bottleAmount > 0) {
 				Experience.add(player, bottleAmount);
 				Messages.BOTTLE_CLAIM.replace("{amount}", NumberFormat.getInstance().format(bottleAmount)).send(player);

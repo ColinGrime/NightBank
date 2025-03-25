@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import java.text.NumberFormat;
 
 public class BankListeners implements Listener {
 
@@ -26,46 +27,46 @@ public class BankListeners implements Listener {
 
 		// Depositing a banknote.
 		double withdrawAmount = NBT.getTag(item, "withdraw", double.class).orElse(0.0);
-		if (withdrawAmount > 0) {
+		if (withdrawAmount > 0 && player.hasPermission("nightbank.withdraw.claim")) {
 			event.setCancelled(true);
-			withdrawAmount *= removeClaimedItems(player, item);
+			withdrawAmount *= removeClaimedItems(player, item, "nightbank.withdraw.claim.stack");
 
 			// Item was successfully redeemed.
 			if (withdrawAmount > 0) {
 				Common.economy().depositPlayer(player, withdrawAmount);
-				Messages.WITHDRAW_CLAIM.replace("{amount}", withdrawAmount).send(player);
+				Messages.WITHDRAW_CLAIM.replace("{amount}", NumberFormat.getInstance().format(withdrawAmount)).send(player);
 			}
 			return;
 		}
 
 		// Depositing an experience bottle.
 		int bottleAmount = NBT.getTag(item, "bottle", int.class).orElse(0);
-		if (bottleAmount > 0) {
+		if (bottleAmount > 0 && player.hasPermission("nightbank.bottle.claim")) {
 			event.setCancelled(true);
-			bottleAmount *= removeClaimedItems(player, item);
+			bottleAmount *= removeClaimedItems(player, item, "nightbank.bottle.claim.stack");
 
 			// Item was successfully redeemed.
 			if (bottleAmount > 0) {
 				Experience.add(player, bottleAmount);
-				Messages.BOTTLE_CLAIM.replace("{amount}", bottleAmount).send(player);
+				Messages.BOTTLE_CLAIM.replace("{amount}", NumberFormat.getInstance().format(bottleAmount)).send(player);
 			}
 		}
 	}
 
 	/**
-	 * If the player is not shifting, it will only remove a single item.
-	 * <p>
-	 * If the player is shifting, it will remove all the items.
+	 * If the player is shifting, and they have permission, the current stack of items will be claimed.
+	 * Otherwise, only one item will be claimed.
 	 *
 	 * @param player the player to remove from
 	 * @param item the item to remove
+	 * @param claimStackPermission the permission to claim the stack
 	 * @return the amount of items removed
 	 */
-	private int removeClaimedItems(@Nonnull Player player, @Nonnull ItemStack item) {
-		if (!player.isSneaking()) {
-			return Inventories.remove(player.getInventory(), item) ? 1 : 0;
+	private int removeClaimedItems(@Nonnull Player player, @Nonnull ItemStack item, @Nonnull String claimStackPermission) {
+		if (player.isSneaking() && player.hasPermission(claimStackPermission)) {
+			return Inventories.remove(player.getInventory(), item);
 		} else {
-			return Inventories.removeAll(player.getInventory(), item);
+			return Inventories.removeSingle(player.getInventory(), item);
 		}
 	}
 }

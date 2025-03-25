@@ -7,6 +7,8 @@ import me.colingrimes.midnight.command.handler.util.Sender;
 import me.colingrimes.nightbank.config.Messages;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class NightBank implements Command<me.colingrimes.nightbank.NightBank> {
 
@@ -18,6 +20,12 @@ public class NightBank implements Command<me.colingrimes.nightbank.NightBank> {
 		} else {
 			Messages.NIGHTBANK_USAGE.send(sender);
 		}
+	}
+
+	@Nullable
+	@Override
+	public List<String> tabComplete(@Nonnull me.colingrimes.nightbank.NightBank plugin, @Nonnull Sender sender, @Nonnull ArgumentList args) {
+		return args.size() == 1 ? List.of("reload") : null;
 	}
 
 	@Override

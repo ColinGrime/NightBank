@@ -6,14 +6,19 @@ import me.colingrimes.midnight.command.handler.util.CommandProperties;
 import me.colingrimes.midnight.command.handler.util.Sender;
 import me.colingrimes.midnight.util.bukkit.Items;
 import me.colingrimes.midnight.util.bukkit.Players;
+import me.colingrimes.nightbank.NightBank;
 import me.colingrimes.nightbank.config.Messages;
 import me.colingrimes.nightbank.config.Settings;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.text.NumberFormat;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BottleGive implements Command<me.colingrimes.nightbank.NightBank> {
 
@@ -42,6 +47,15 @@ public class BottleGive implements Command<me.colingrimes.nightbank.NightBank> {
 			player.getInventory().addItem(bottleItem);
 			Messages.BOTTLE_RECEIVE.replace("{amount}", NumberFormat.getInstance().format(amount)).send(player);
 		}
+	}
+
+	@Nullable
+	@Override
+	public List<String> tabComplete(@Nonnull NightBank plugin, @Nonnull Sender sender, @Nonnull ArgumentList args) {
+		if (args.size() == 1) {
+			return Stream.concat(Stream.of("all"), Players.mapList(Player::getName).stream()).collect(Collectors.toList());
+		}
+		return null;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -22,7 +23,7 @@ public class BankListeners implements Listener {
 
 	@EventHandler
 	public void onPlayerInteract(@Nonnull PlayerInteractEvent event) {
-		if (!(event.getAction().name().startsWith("RIGHT_CLICK"))) {
+		if (!(event.getAction().name().startsWith("RIGHT_CLICK")) || event.getHand() != EquipmentSlot.HAND) {
 			return;
 		}
 

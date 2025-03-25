@@ -28,8 +28,8 @@
 * `/nightbank reload` (nightbank.admin)
 * `/withdraw give [player] [amount]` (nightbank.admin)
 * `/withdraw give all [amount]` (nightbank.admin)
-* `/withdraw give [player] [amount]` (nightbank.admin)
-* `/withdraw give all [amount]` (nightbank.admin)
+* `/bottle give [player] [amount]` (nightbank.admin)
+* `/bottle give all [amount]` (nightbank.admin)
 
 ## Permissions:
 * `nightbank.admin` - Access to all Admin commands.

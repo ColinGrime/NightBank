@@ -88,7 +88,7 @@ public class BankListeners implements Listener {
 		if (player.isSneaking() && player.hasPermission(claimStackPermission)) {
 			return Inventories.remove(player.getInventory(), item);
 		} else {
-			return Inventories.removeSingle(player.getInventory(), item);
+			return Inventories.removeSingle(player.getInventory(), item) ? 1 : 0;
 		}
 	}
 }
